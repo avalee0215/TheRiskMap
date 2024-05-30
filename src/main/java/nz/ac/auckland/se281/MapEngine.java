@@ -1,13 +1,18 @@
 package nz.ac.auckland.se281;
 
+import java.util.HashMap; // Import HashMap
 import java.util.List;
+import java.util.Map;
 
 /** This class is the main entry point. */
 public class MapEngine {
+  private Map<String, Country>
+      graph; // Use map to make a graph. This Map will save countries as a key and
+             // related(neighbour) countries as values
 
   public MapEngine() {
-    // add other code here if you want
-    loadMap(); // keep this mehtod invocation
+    graph = new HashMap<>();
+    loadMap(); // keep this method invocation
   }
 
   /** invoked one time only when constracting the MapEngine class. */
