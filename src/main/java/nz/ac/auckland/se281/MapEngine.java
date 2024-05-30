@@ -54,6 +54,9 @@ public class MapEngine {
     while (!inputValid) {
       try {
         String countryName = Utils.scanner.nextLine();
+        countryName =
+            Utils.capitalizeFirstLetterOfEachWord(
+                countryName); // Capitalise only the first letter of each word of the country.
         nameExceptionHandle(
             countryName,
             "information"); // Check that the country name from the user is valid. Add the type of
@@ -76,6 +79,9 @@ public class MapEngine {
     while (!startValid) {
       try {
         String countryName = Utils.scanner.nextLine();
+        countryName =
+            Utils.capitalizeFirstLetterOfEachWord(
+                countryName); // Capitalise only the first letter of each word of the country.
         nameExceptionHandle(
             countryName, "route"); // Check that the country name from the user is valid.
         startCountry = countryName;
@@ -92,6 +98,9 @@ public class MapEngine {
     while (!endValid) {
       try {
         String countryName = Utils.scanner.nextLine();
+        countryName =
+            Utils.capitalizeFirstLetterOfEachWord(
+                countryName); // Capitalise only the first letter of each word of the country.
         nameExceptionHandle(
             countryName, "route"); // Check that the country name from the user is valid.
         endValid = true;
@@ -137,9 +146,7 @@ public class MapEngine {
    * this method is invoked when the user call nameExceptionHandle to test the countryname is valid.
    */
   public void nameExceptionHandle(String countryName, String method) {
-    countryName =
-        Utils.capitalizeFirstLetterOfEachWord(
-            countryName); // Capitalise only the first letter of each word of the country.
+
     if (graph.containsKey(countryName)) {
       if (method == "information") {
         // Print the information if the type is information (infoCountry)
