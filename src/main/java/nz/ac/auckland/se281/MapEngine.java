@@ -42,14 +42,18 @@ public class MapEngine {
   /** this method is invoked when the user run the command info-country. */
   public void showInfoCountry() {
     MessageCli.INSERT_COUNTRY.printMessage();
+    boolean inputValid = false; // Repeat the process until the input is valid country name
 
-    try {
-      String countryName = Utils.scanner.nextLine();
-      nameExceptionHandle(countryName); // Check that the country name from the user is valid.
-    } catch (CountryNameException e) {
-      MessageCli.INVALID_COUNTRY.printMessage(e.getMessage());
-      MessageCli.INVALID_COUNTRY.printMessage(
-          e.getMessage()); // Error message with the invalid input string.
+    while (!inputValid) {
+      try {
+        String countryName = Utils.scanner.nextLine();
+        nameExceptionHandle(countryName); // Check that the country name from the user is valid.
+        inputValid = true;
+      } catch (CountryNameException e) {
+        MessageCli.INVALID_COUNTRY.printMessage(e.getMessage());
+        MessageCli.INVALID_COUNTRY.printMessage(
+            e.getMessage()); // Error message with the invalid input string.
+      }
     }
   }
 
