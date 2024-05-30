@@ -1,8 +1,13 @@
 package nz.ac.auckland.se281;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 
 /** This class is the main entry point. */
 public class MapEngine {
@@ -94,6 +99,11 @@ public class MapEngine {
             e.getMessage()); // Error message with the invalid input string.
       }
     }
+
+    // Find the fastest route
+    List<String> route =
+        findRoute(
+            startCountry, endCountry); // Save the history of the route and use findRoute method
   }
 
   /**
@@ -119,5 +129,19 @@ public class MapEngine {
           countryName); // If it is invalid, throw the exception with the country name to print the
       // error message.
     }
+  }
+
+  /**
+   * this method is to find the fastest route from the source to destination country by using BFS
+   */
+  public List<String> findRoute(String startCountry, String endCountry) {
+    Set<String> track = new HashSet<>(); // To keep track of visited countries, use hashset
+    Queue<List<String>> queue = new LinkedList<>(); // Use to hold paths
+
+    // start tracking from the start country
+    queue.add(Arrays.asList(startCountry));
+    track.add(startCountry);
+
+    return null; // for now
   }
 }
