@@ -42,6 +42,13 @@ public class MapEngine {
   /** this method is invoked when the user run the command info-country. */
   public void showInfoCountry() {
     MessageCli.INSERT_COUNTRY.printMessage();
+
+    try {
+      String countryName = Utils.scanner.nextLine();
+      nameExceptionHandle(countryName); // Check that the country name from the user is valid.
+    } catch (CountryNameException e) {
+
+    }
   }
 
   /** this method is invoked when the user run the command route. */
