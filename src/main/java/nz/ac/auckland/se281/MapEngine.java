@@ -142,6 +142,17 @@ public class MapEngine {
     queue.add(Arrays.asList(startCountry));
     track.add(startCountry);
 
+    // Repeat tracking until the queue is empty
+    while (!queue.isEmpty()) {
+      List<String> path = queue.poll();
+      String pathLastCountry = path.get(path.size() - 1);
+
+      if (pathLastCountry.equals(endCountry)) {
+        // When the last country in the path is same as the end country, it means the path is over
+        // so return the path
+        return path;
+      }
+    }
     return null; // for now
   }
 }
