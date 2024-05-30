@@ -139,6 +139,7 @@ public class MapEngine {
           new ArrayList<>(visitedContinents); // Convert the set to the list
 
       MessageCli.ROUTE_INFO.printMessage(route.toString());
+      MessageCli.CONTINENT_INFO.printMessage(orderedContinents.toString());
     }
   }
 
