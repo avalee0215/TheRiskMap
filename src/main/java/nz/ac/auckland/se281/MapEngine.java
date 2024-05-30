@@ -47,10 +47,12 @@ public class MapEngine {
     while (!inputValid) {
       try {
         String countryName = Utils.scanner.nextLine();
-        nameExceptionHandle(countryName); // Check that the country name from the user is valid.
+        nameExceptionHandle(
+            countryName,
+            "information"); // Check that the country name from the user is valid. Add the type of
+        // the method to reuse the nameExceptionHandle.
         inputValid = true;
       } catch (CountryNameException e) {
-        MessageCli.INVALID_COUNTRY.printMessage(e.getMessage());
         MessageCli.INVALID_COUNTRY.printMessage(
             e.getMessage()); // Error message with the invalid input string.
       }
@@ -58,22 +60,60 @@ public class MapEngine {
   }
 
   /** this method is invoked when the user run the command route. */
-  public void showRoute() {}
+  public void showRoute() {
+    // Initially, get two countries (source and destination) by using the same method in
+    // showInfoCountry
+    MessageCli.INSERT_SOURCE.printMessage();
+    boolean startValid = false;
+    String startCountry = null; // save the source country as start country
+    while (!startValid) {
+      try {
+        String countryName = Utils.scanner.nextLine();
+        nameExceptionHandle(
+            countryName, "route"); // Check that the country name from the user is valid.
+        startCountry = countryName;
+        startValid = true;
+      } catch (CountryNameException e) {
+        MessageCli.INVALID_COUNTRY.printMessage(
+            e.getMessage()); // Error message with the invalid input string.
+      }
+    }
+
+    MessageCli.INSERT_DESTINATION.printMessage();
+    boolean endValid = false;
+    String endCountry = null; // save the destination country as end country
+    while (!endValid) {
+      try {
+        String countryName = Utils.scanner.nextLine();
+        nameExceptionHandle(
+            countryName, "route"); // Check that the country name from the user is valid.
+        endValid = true;
+        endCountry = countryName;
+      } catch (CountryNameException e) {
+        MessageCli.INVALID_COUNTRY.printMessage(
+            e.getMessage()); // Error message with the invalid input string.
+      }
+    }
+  }
 
   /**
    * this method is invoked when the user call nameExceptionHandle to test the countryname is valid.
    */
-  public void nameExceptionHandle(String countryName) {
+  public void nameExceptionHandle(String countryName, String method) {
     countryName =
         Utils.capitalizeFirstLetterOfEachWord(
             countryName); // Capitalise only the first letter of each word of the country.
     if (graph.containsKey(countryName)) {
-      Country country = graph.get(countryName);
-      String tax = String.valueOf(country.getTax());
-      MessageCli.COUNTRY_INFO.printMessage(
-          countryName,
-          country.getContinent(),
-          tax); // Print the information of the country (continent, tax fees).
+      if (method == "information") {
+        // Print the information if the type is information (infoCountry)
+        Country country = graph.get(countryName);
+        String tax = String.valueOf(country.getTax());
+        MessageCli.COUNTRY_INFO.printMessage(
+            countryName,
+            country.getContinent(),
+            tax); // Print the information of the country (continent, tax fees).
+      }
+
     } else {
       throw new CountryNameException(
           countryName); // If it is invalid, throw the exception with the country name to print the
