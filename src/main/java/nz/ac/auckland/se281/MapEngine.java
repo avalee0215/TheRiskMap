@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -108,7 +109,26 @@ public class MapEngine {
     if (startCountry.equals(endCountry)) {
       MessageCli.NO_CROSSBORDER_TRAVEL
           .printMessage(); // print the cross border message. It means the start and end country are
-                           // the same.
+      // the same.
+    } else {
+      // Otherwise, print the shortest route, continents, and total taxes.
+      Set<String> visitedContinents = new LinkedHashSet<>();
+      int taxTotal = 0;
+
+      for (int i = 0; i < route.size(); i++) {
+        Country country = graph.get(route.get(i));
+        String continent = country.getContinent();
+        visitedContinents.add(
+            continent); // add the continent of countries that are passed. By using the set, the
+        // continent will not be repeated.
+
+        if (i > 0) {
+          taxTotal = country.getTax() + taxTotal; // Calculate the total tax fees except itself.
+        }
+
+        List<String> orderedContinents =
+            new ArrayList<>(visitedContinents); // Convert the set to the list
+      }
     }
   }
 
