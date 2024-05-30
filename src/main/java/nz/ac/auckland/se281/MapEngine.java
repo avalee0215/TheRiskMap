@@ -105,6 +105,11 @@ public class MapEngine {
     List<String> route =
         findRoute(
             startCountry, endCountry); // Save the history of the route and use findRoute method
+    if (startCountry.equals(endCountry)) {
+      MessageCli.NO_CROSSBORDER_TRAVEL
+          .printMessage(); // print the cross border message. It means the start and end country are
+                           // the same.
+    }
   }
 
   /**
@@ -162,7 +167,7 @@ public class MapEngine {
           List<String> newPath =
               new ArrayList<>(
                   path); // Add a new path which has the current path and add the neighbour country
-                         // at the end.
+          // at the end.
           newPath.add(neighbourCountry);
           queue.add(newPath);
         }
