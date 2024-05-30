@@ -27,6 +27,16 @@ public class MapEngine {
       Country country = new Country(line[0], line[1], Integer.parseInt(line[2]));
       graph.put(line[0], country); // Save the country(object) in the graph
     }
+
+    // Save information from adjacencies file; neighbour countries
+    for (String a : adjacencies) {
+      String[] line = a.split(","); // split as the file has information  with a line
+      String countryName = line[0];
+      Country country = graph.get(countryName);
+      for (int i = 1; i < line.length; i++) {
+        country.addAdjencies(line[i]); // Add all the neighbour countries for each country
+      }
+    }
   }
 
   /** this method is invoked when the user run the command info-country. */

@@ -11,6 +11,7 @@ public class Country {
   private List<String> adjacentCountries;
 
   public Country(String countryName, String continentName, int taxFees) {
+    // Update the constructor and initialise the adjacentCountries list
     this.countryName = countryName;
     this.continentName = continentName;
     this.taxFees = taxFees;
@@ -31,5 +32,9 @@ public class Country {
 
   public List<String> getAdjacencies() {
     return adjacentCountries;
+  }
+
+  public void addAdjencies(String adjCountry) {
+    adjacentCountries.add(adjCountry); // Add the neighbour countries for each country
   }
 }
