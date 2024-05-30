@@ -47,7 +47,9 @@ public class MapEngine {
       String countryName = Utils.scanner.nextLine();
       nameExceptionHandle(countryName); // Check that the country name from the user is valid.
     } catch (CountryNameException e) {
-
+      MessageCli.INVALID_COUNTRY.printMessage(e.getMessage());
+      MessageCli.INVALID_COUNTRY.printMessage(
+          e.getMessage()); // Error message with the invalid input string.
     }
   }
 
