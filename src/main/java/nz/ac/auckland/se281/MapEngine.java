@@ -1,5 +1,6 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -152,7 +153,21 @@ public class MapEngine {
         // so return the path
         return path;
       }
+
+      // Otherwise, add the neighbour countries to path
+      for (String neighbourCountry : graph.get(pathLastCountry).getAdjacencies()) {
+        // BFS method: moving on to the next node(country) at the next level.
+        if (!track.contains(neighbourCountry)) {
+          track.add(neighbourCountry);
+          List<String> newPath =
+              new ArrayList<>(
+                  path); // Add a new path which has the current path and add the neighbour country
+                         // at the end.
+          newPath.add(neighbourCountry);
+          queue.add(newPath);
+        }
+      }
     }
-    return null; // for now
+    return null; //  If there is no destination country we want to find, return null.
   }
 }
