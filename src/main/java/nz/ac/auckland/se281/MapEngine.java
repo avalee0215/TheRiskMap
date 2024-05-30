@@ -163,13 +163,12 @@ public class MapEngine {
 
     } else {
       throw new CountryNameException(
-          countryName); // If it is invalid, throw the exception with the country name to print the
-      // error message.
+          countryName); // If it is invalid, throw the exception with the country name.
     }
   }
 
   /**
-   * this method is to find the fastest route from the source to destination country by using BFS
+   * this method is to find the fastest route from the source to destination country by using BFS.
    */
   public List<String> findRoute(String startCountry, String endCountry) {
     Set<String> track = new HashSet<>(); // To keep track of visited countries, use hashset
