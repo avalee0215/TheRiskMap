@@ -125,10 +125,11 @@ public class MapEngine {
         if (i > 0) {
           taxTotal = country.getTax() + taxTotal; // Calculate the total tax fees except itself.
         }
-
-        List<String> orderedContinents =
-            new ArrayList<>(visitedContinents); // Convert the set to the list
       }
+      List<String> orderedContinents =
+          new ArrayList<>(visitedContinents); // Convert the set to the list
+
+      MessageCli.ROUTE_INFO.printMessage(route.toString());
     }
   }
 
