@@ -138,8 +138,10 @@ public class MapEngine {
       List<String> orderedContinents =
           new ArrayList<>(visitedContinents); // Convert the set to the list
 
+      // Print the messages of the shortest route, continents, and total tax fees.
       MessageCli.ROUTE_INFO.printMessage(route.toString());
       MessageCli.CONTINENT_INFO.printMessage(orderedContinents.toString());
+      MessageCli.TAX_INFO.printMessage(String.valueOf(taxTotal));
     }
   }
 
