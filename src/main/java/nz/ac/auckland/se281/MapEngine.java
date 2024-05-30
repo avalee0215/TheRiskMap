@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-import java.util.HashMap; // Import HashMap
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +8,8 @@ import java.util.Map;
 public class MapEngine {
   private Map<String, Country>
       graph; // Use map to make a graph. This Map will save countries as a key and
-             // related(neighbour) countries as values
+
+  // related(neighbour) countries as values
 
   public MapEngine() {
     graph = new HashMap<>();
@@ -19,7 +20,13 @@ public class MapEngine {
   private void loadMap() {
     List<String> countries = Utils.readCountries();
     List<String> adjacencies = Utils.readAdjacencies();
-    // add code here to create your data structures
+
+    // Save information from countries file: continent, tax fees, and name.
+    for (String a : countries) {
+      String[] line = a.split(","); // split as the file has information of the country with a line
+      Country country = new Country(line[0], line[1], Integer.parseInt(line[2]));
+      graph.put(line[0], country); // Save the country(object) in the graph
+    }
   }
 
   /** this method is invoked when the user run the command info-country. */
